@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:15.6
+    restart: always
+    environment:
+      POSTGRES_DB: stakefish
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Deng_pf1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
