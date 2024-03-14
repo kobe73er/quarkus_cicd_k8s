@@ -85,7 +85,11 @@ Monitor your application's health using SmallRye Health
 
 [Related guide section...](https://quarkus.io/guides/smallrye-health)
 
-## start dev model with production configuration
+### start dev model with production configuration
 ```
 ./mvnw quarkus:dev -Dquarkus.profile=prod
+```
+### build production image and push to dockerhub
+```
+./mvnw package -Dquarkus.profile=prod
 ```
