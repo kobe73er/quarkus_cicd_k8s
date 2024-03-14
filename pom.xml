@@ -186,5 +186,21 @@
         <quarkus.package.type>native</quarkus.package.type>
       </properties>
     </profile>
+
+    <profile>
+      <id>dev</id>
+      <properties>
+        <quarkus.profile>dev</quarkus.profile>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <quarkus.profile>prod</quarkus.profile>
+      </properties>
+    </profile>
   </profiles>
 </project>
