@@ -6,7 +6,7 @@ on:
       - main  
 
 jobs:
-  build-and-push:
+  stakefish-interview-api:
     runs-on: ubuntu-latest
     steps:
     - name: Check Out Repository
@@ -32,4 +32,14 @@ jobs:
         QUARKUS_PROFILE: prod
       run: |
         echo $DOCKER_HUB_ACCESS_TOKEN | docker login -u $DOCKER_HUB_USERNAME --password-stdin
-        ./mvnw package -Dquarkus.profile=prod
+        ./mvnw package -Dquarkus.profile=prod -Dquarkus.container-image.build=true
+
+    - name: Deploy to Kubernetes
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }} # Kubernetes 配置文件的 base64 编码版本
+      run: |
+        # 创建 Kubernetes 配置文件
+        echo $KUBE_CONFIG_DATA | base64 -d > $HOME/.kube/config
+        
+        # 部署到 Kubernetes
+        kubectl apply -f target/kubernetes/kubernetes.yml -n stakefish        
