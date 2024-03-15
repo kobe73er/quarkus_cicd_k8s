@@ -1,4 +1,4 @@
-# stakefish
+# StakeFish
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -85,11 +85,13 @@ Monitor your application's health using SmallRye Health
 
 [Related guide section...](https://quarkus.io/guides/smallrye-health)
 
-### start dev model with production configuration
+## Useful Commands ##
+
+### Start dev model with production configuration
 ```
 ./mvnw quarkus:dev -Dquarkus.profile=prod
 ```
-### build production image and push to dockerhub
+### Build production image and push to dockerhub
 ```
 ./mvnw package -Dquarkus.profile=prod
 ```
