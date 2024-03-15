@@ -27,8 +27,8 @@ jobs:
 
     - name: Build and Push Docker Image
       env:
-        DOCKER_HUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         QUARKUS_PROFILE: prod
       run: |
         ./mvnw package -Dquarkus.profile=prod

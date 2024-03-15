@@ -71,19 +71,6 @@ consult https://quarkus.io/guides/maven-tooling.
 - SmallRye Metrics ([guide](https://quarkus.io/guides/smallrye-metrics)): Expose metrics for your
   services
 
-## Provided Code
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
-
-### SmallRye Health
-
-Monitor your application's health using SmallRye Health
-
-[Related guide section...](https://quarkus.io/guides/smallrye-health)
 
 ## Useful Commands ##
 
@@ -95,3 +82,4 @@ Monitor your application's health using SmallRye Health
 ```
 ./mvnw package -Dquarkus.profile=prod
 ```
+
