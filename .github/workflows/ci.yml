@@ -33,3 +33,4 @@ jobs:
       run: |
         ./mvnw package -Dquarkus.profile=prod
         echo "dckr_pat_ukSxVcjwRIeQ3X3kYveUhz8bB38" | docker login -u "andrewprogramming" --password-stdin
+        docker push andrewprogramming/skatefish-api:latest
