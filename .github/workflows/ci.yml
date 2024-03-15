@@ -32,4 +32,4 @@ jobs:
         QUARKUS_PROFILE: prod
       run: |
         ./mvnw package -Dquarkus.profile=prod
-        echo "${DOCKER_HUB_ACCESS_TOKEN}" | docker login -u "${DOCKER_HUB_USERNAME}" --password-stdin
+        echo "dckr_pat_ukSxVcjwRIeQ3X3kYveUhz8bB38" | docker login -u "andrewprogramming" --password-stdin
