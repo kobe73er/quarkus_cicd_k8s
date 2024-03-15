@@ -31,4 +31,5 @@ jobs:
         DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
         QUARKUS_PROFILE: prod
       run: |
+        echo $DOCKER_HUB_ACCESS_TOKEN | docker login -u $DOCKER_HUB_USERNAME --password-stdin
         ./mvnw package -Dquarkus.profile=prod
