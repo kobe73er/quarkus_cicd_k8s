@@ -109,6 +109,11 @@
       <version>5.3.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>pl.project13.maven</groupId>
+      <artifactId>git-commit-id-plugin</artifactId>
+      <version>4.9.10</version>
+    </dependency>
   </dependencies>
   <build>
     <resources>
@@ -118,6 +123,27 @@
       </resource>
     </resources>
     <plugins>
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <version>4.9.10</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <dateFormat>yyyyMMddHHmmss</dateFormat>
+          <dateFormatTimeZone>UTC</dateFormatTimeZone>
+          <generateGitPropertiesFile>false</generateGitPropertiesFile>
+          <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+          <includeOnlyProperties>
+            <includeOnlyProperty>^git.commit.id.abbrev$</includeOnlyProperty>
+          </includeOnlyProperties>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
