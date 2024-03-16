@@ -43,6 +43,7 @@ public class ToolsResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Validate domain", description = "Validate if the input is an IPv4 address or not")
     @APIResponse(
         responseCode = "200",
         description = "OK",
@@ -65,7 +66,7 @@ public class ToolsResource {
     @GET
     @Path("/lookup")
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Lookup domain", description = "Lookup domain and return all IPv4 addresses")
+    @Operation(summary = "Lookup domain", description = "Resolve ONLY the IPv4 addresses for the given domain")
     @APIResponses(value = {
         @APIResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = LookupResponseDTO.class))),
         @APIResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessageDTO.class))),

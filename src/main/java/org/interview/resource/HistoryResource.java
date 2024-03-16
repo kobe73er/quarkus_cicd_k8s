@@ -26,7 +26,7 @@ public class HistoryResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "List queries", description = "List the latest 20 queries from the database.")
+    @Operation(summary = "List queries", description = "Retrieve the latest 20 saved queries from the database and display them in order (the most recent first)")
     @APIResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = LookupResponseDTO.class)))
     @APIResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = HttpErrorResponseDTO.class)))
     public Response getHistory() {
