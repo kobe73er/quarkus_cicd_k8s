@@ -28,4 +28,11 @@ public class BaseResource {
         return response;
     }
 
+    @GET
+    @Path("/new")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String newapi(){
+        return "new api";
+    }
+
 }
