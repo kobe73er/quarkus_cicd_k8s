@@ -27,4 +27,12 @@ public class BaseResource {
         response.setKubernetes(environmentService.isRunningInKubernetes());
         return response;
     }
+
+    @GET
+    @Path("/new")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String newApi() {
+        return "new api";
+    }
+
 }
