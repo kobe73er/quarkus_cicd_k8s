@@ -18,6 +18,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      - name: Check code format
+        run: mvn spotless:check
+
       - name: Cache Maven Packages
         uses: actions/cache@v2
         with:
