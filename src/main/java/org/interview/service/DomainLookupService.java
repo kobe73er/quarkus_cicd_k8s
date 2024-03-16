@@ -4,6 +4,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.BadRequestException;
+import java.io.IOException;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -42,20 +44,19 @@ public class DomainLookupService {
 
 
     @Transactional
-    public LookupResponseDTO lookup(String domain)
-        throws DomainNotFoundException, InvalidDomainException {
+    public LookupResponseDTO lookup(String domain) throws DomainNotFoundException, InvalidDomainException {
         if (domain == null || domain.isEmpty()) {
             throw new InvalidDomainException("Domain cannot be empty");
         }
-        if (!domain.matches("[a-zA-Z0-9.-]+")) {
+        // Regular expression for validating RFC 1035 compliant domain names
+        if (!domain.matches("^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\\.[A-Za-z]{2,})+$")) {
             throw new InvalidDomainException("Domain format is invalid");
         }
 
         try {
             InetAddress[] addresses = InetAddress.getAllByName(domain);
             List<String> ipv4Addresses = Arrays.stream(addresses)
-                .filter(addr -> addr.getAddress().length
-                    == 4) // Only IPv4 addresses, which are 4 bytes long
+                .filter(addr -> addr instanceof Inet4Address) // 仅保留IPv4地址
                 .map(InetAddress::getHostAddress)
                 .collect(Collectors.toList());
 
@@ -72,28 +73,28 @@ public class DomainLookupService {
                 domainInfo.setAddresses(ipv4Addresses);
                 domainInfo.setClientIp(InetAddress.getLocalHost().getHostAddress());
                 domainInfo.setCreatedAt(System.currentTimeMillis());
-                domainInfoRepository.persist(domainInfo); // Persist the new record
-            } else {
-                // Record exists, perhaps update the existing record
-                domainInfo.setAddresses(ipv4Addresses);
-                domainInfo.setClientIp(InetAddress.getLocalHost().getHostAddress());
-                domainInfo.setCreatedAt(System.currentTimeMillis());
-
-                // Merge the updated record
                 domainInfoRepository.persist(domainInfo);
+            } else {
+                if (!domainInfo.getAddresses().equals(ipv4Addresses) || !domainInfo.getClientIp().equals(InetAddress.getLocalHost().getHostAddress())) {
+                    domainInfo.setAddresses(ipv4Addresses);
+                    domainInfo.setClientIp(InetAddress.getLocalHost().getHostAddress());
+                    domainInfo.setCreatedAt(System.currentTimeMillis());
+                    domainInfoRepository.persist(domainInfo);
+                }
             }
 
-            // Return the response object
             return LookupResponseDTO.builder()
-                .addresses(ipv4Addresses) // The custom setter method will handle the transformation
+                .addresses(ipv4Addresses)
                 .client_ip(domainInfo.getClientIp())
                 .domain(domain)
                 .created_at(domainInfo.getCreatedAt())
                 .build();
 
-
         } catch (UnknownHostException e) {
             throw new DomainNotFoundException("Domain not found: " + domain);
+        } catch (IOException e) {
+            throw new RuntimeException("Error retrieving client IP address", e);
         }
     }
+
 }
