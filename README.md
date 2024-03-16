@@ -50,7 +50,7 @@ docker-compose -f docker-compose-dev.yaml up
  ````
 
 ### Start in Production (Prod Env)
-**PS: This project already deployed in AKS (Azure Kubernetes Service) and keep avaiable during the interview period**
+**PS: This project already deployed in AKS (Azure Kubernetes Service) and keep available during the interview period**
 ![img_4.png](img_4.png)
 ![img_5.png](img_5.png)
 ![img_8.png](img_8.png)
