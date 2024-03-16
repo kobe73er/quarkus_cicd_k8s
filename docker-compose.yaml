@@ -16,7 +16,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: src/main/docker/Dockerfile
+      dockerfile: Dockerfile
     depends_on:
       - db
     environment:

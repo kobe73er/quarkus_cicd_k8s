@@ -5,8 +5,8 @@ FROM maven:3.9.6-amazoncorretto-21 AS build
 WORKDIR /build
 
 # Copy the pom.xml and source code into the container
-COPY ../../../pom.xml /build/
-COPY ../.. /build/src/
+COPY pom.xml /build/
+COPY src /build/src/
 
 # Package the application without running tests
 RUN mvn clean package -DskipTests -Dquarkus.container-image.build=false -Dquarkus.container-image.push=false
@@ -27,7 +27,7 @@ COPY --from=build /build/target/quarkus-app/app/ /deployments/app/
 COPY --from=build /build/target/quarkus-app/quarkus/ /deployments/quarkus/
 
 # Expose the HTTP port
-EXPOSE 8080
+EXPOSE 3000
 
 # Use the user 185 for the application (standard for Red Hat's image)
 USER 185

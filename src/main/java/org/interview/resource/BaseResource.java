@@ -45,11 +45,4 @@ public class BaseResource {
     return response;
   }
 
-  @GET
-  @Path("/hi")
-  @Produces(MediaType.TEXT_PLAIN)
-  public Response getText() {
-    String message = "Hello, World!";
-    return Response.ok(message).build();
-  }
 }
