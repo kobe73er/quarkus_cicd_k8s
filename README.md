@@ -6,9 +6,8 @@
 
 - JDK 21
 - [Quarkus](https://quarkus.io/) (Framework)
--
-Docker / [DokcerHub](https://hub.docker.com/repository/docker/andrewprogramming/skatefish-api/general) /
-Docker Compose(Dev environment)
+
+- Docker / [DokcerHub](https://hub.docker.com/repository/docker/andrewprogramming/skatefish-api/general) / Docker Compose(Dev environment)
 - K8s (Production)
 - Azure LoadBalancer
 - AWS RDS PostgreSQL
@@ -62,7 +61,7 @@ docker-compose -f docker-compose-dev.yaml up
 ### Visit swagger UI
 
 - http://localhost:3000/swagger-ui/ (Dev)
-- http://4.147.249.188/swagger-ui/ (Production)
+- http://4.147.249.188/swagger-ui/ (Production)![img_2.png](img_2.png)
 
 ### CI/CD
 
@@ -70,7 +69,8 @@ docker-compose -f docker-compose-dev.yaml up
 - Most of the cases HELM with FluxCD or ArgoCD maybe a better option for GitOps implementation then
   Kubernetes manifests but for this case due to the limitation of time and the great advantage of
   Quarkus , Kubernetes manifests is choosed
-- [Link](https://github.com/kobe73er/stakefish_interview/actions)
+  [![img_1.png](img_1.png)](https://github.com/kobe73er/stakefish_interview/actions)https://github.com/kobe73er/stakefish_interview/actions
+
 
 ## Next Step
 
