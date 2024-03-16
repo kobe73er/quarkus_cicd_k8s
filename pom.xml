@@ -180,6 +180,7 @@
             <groupId>pl.project13.maven</groupId>
             <version>4.9.10</version>
         </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

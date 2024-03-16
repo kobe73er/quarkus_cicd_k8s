@@ -17,14 +17,12 @@
 
 ## How to start
 
-
-
 ### Start Locally (Dev Env) ###
 #### Prerequest
-- JDK21
 - Docker / Docker Compose
 
-1. start database locally using `docker-compose up` , make sure run this command in root folder
+**Two options:**
+1. start database locally using `docker-compose up -d --build` , make sure run this command in root folder
 2. `./mvnw quarkus:dev -Dquarkus.profile=dev -Dquarkus.container-image.build=false -Dquarkus.container-image.push=false`
 
 
