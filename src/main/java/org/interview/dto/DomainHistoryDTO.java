@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DomainHistoryDTO {
 
-    public List<IpAddressDTO> addresses;
-    public String client_ip;
-    public String domain;
-    public long created_at;
-
-
+  public List<IpAddressDTO> addresses;
+  public String client_ip;
+  public String domain;
+  public long created_at;
 }

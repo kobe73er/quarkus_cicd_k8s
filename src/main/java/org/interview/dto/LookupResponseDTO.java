@@ -13,18 +13,16 @@ import lombok.Setter;
 @Builder
 public class LookupResponseDTO {
 
-    private List<IpAddressDTO> addresses;
-    private String client_ip;
-    private String domain;
-    private long created_at;
+  private List<IpAddressDTO> addresses;
+  private String client_ip;
+  private String domain;
+  private long created_at;
 
-    public static class LookupResponseDTOBuilder {
+  public static class LookupResponseDTOBuilder {
 
-        public LookupResponseDTOBuilder addresses(List<String> addresses) {
-            this.addresses = addresses.stream()
-                .map(IpAddressDTO::new)
-                .collect(Collectors.toList());
-            return this;
-        }
+    public LookupResponseDTOBuilder addresses(List<String> addresses) {
+      this.addresses = addresses.stream().map(IpAddressDTO::new).collect(Collectors.toList());
+      return this;
     }
+  }
 }

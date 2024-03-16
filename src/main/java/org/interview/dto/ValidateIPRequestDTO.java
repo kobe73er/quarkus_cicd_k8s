@@ -7,5 +7,5 @@ import lombok.Setter;
 @Getter
 public class ValidateIPRequestDTO {
 
-    private String ip;
+  private String ip;
 }

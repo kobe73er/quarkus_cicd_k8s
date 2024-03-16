@@ -1,6 +1,5 @@
 package org.interview.entity;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -17,24 +16,23 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "domain_info", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"domain"})
-})
+@Table(
+    name = "domain_info",
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"domain"})})
 public class DomainInfo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> addresses;
+  @ElementCollection(fetch = FetchType.EAGER)
+  private List<String> addresses;
 
-    @Column(name = "client_ip")
-    private String clientIp;
+  @Column(name = "client_ip")
+  private String clientIp;
 
+  private String domain;
 
-    private String domain;
-
-    @Column(name = "created_at")
-    private long createdAt;
+  @Column(name = "created_at")
+  private long createdAt;
 }

@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class ErrorMessageDTO {
 
-    String message;
+  String message;
 
-    public ErrorMessageDTO(String message) {
-        this.message = message;
-    }
+  public ErrorMessageDTO(String message) {
+    this.message = message;
+  }
 }

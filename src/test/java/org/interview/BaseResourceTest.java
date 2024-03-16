@@ -8,11 +8,8 @@ import org.junit.jupiter.api.Test;
 @QuarkusTest
 class BaseResourceTest {
 
-    @Test
-    void testHelloEndpoint() {
-        given()
-            .when().get("/")
-            .then()
-            .statusCode(200); // 只验证响应状态码为 200
-    }
+  @Test
+  void testHelloEndpoint() {
+    given().when().get("/").then().statusCode(200); // 只验证响应状态码为 200
+  }
 }

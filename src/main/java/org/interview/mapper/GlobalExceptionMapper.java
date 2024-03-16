@@ -11,16 +11,13 @@ import jakarta.ws.rs.ext.Provider;
 @Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
 
-    @Override
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response toResponse(Exception exception) {
-        JsonObject json = new JsonObject();
-        json.put("message", "An unexpected error occurred. Please try again later.");
-        Log.error(exception.getMessage(), exception);
+  @Override
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response toResponse(Exception exception) {
+    JsonObject json = new JsonObject();
+    json.put("message", "An unexpected error occurred. Please try again later.");
+    Log.error(exception.getMessage(), exception);
 
-        return Response
-            .status(Response.Status.INTERNAL_SERVER_ERROR)
-            .entity(json.encode())
-            .build();
-    }
+    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(json.encode()).build();
+  }
 }

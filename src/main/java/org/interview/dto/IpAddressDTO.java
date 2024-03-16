@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class IpAddressDTO {
 
-    private String ip;
+  private String ip;
 }

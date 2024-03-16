@@ -19,31 +19,37 @@ import org.interview.service.EnvironmentService;
 @Path("/")
 public class BaseResource {
 
-    @ConfigProperty(name = "application.version")
-    String version;
+  @ConfigProperty(name = "application.version")
+  String version;
 
-    @Inject
-    EnvironmentService environmentService;
+  @Inject EnvironmentService environmentService;
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(description = "Provide the current date (UNIX epoch) and version. Additionally, a boolean property called Kubernetes should indicate if the application is running under Kubernetes. ")
-    @APIResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = LookupResponseDTO.class)))
-    @APIResponse(responseCode = "400", description = "Bad Request", content = @Content(schema = @Schema(implementation = HttpErrorResponseDTO.class)))
-    public BaseResponseDTO hello() {
-        BaseResponseDTO response = new BaseResponseDTO();
-        response.setVersion(version);
-        response.setDate(System.currentTimeMillis() / 1000);
-        response.setKubernetes(environmentService.isRunningInKubernetes());
-        return response;
-    }
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(
+      description =
+          "Provide the current date (UNIX epoch) and version. Additionally, a boolean property called Kubernetes should indicate if the application is running under Kubernetes. ")
+  @APIResponse(
+      responseCode = "200",
+      description = "OK",
+      content = @Content(schema = @Schema(implementation = LookupResponseDTO.class)))
+  @APIResponse(
+      responseCode = "400",
+      description = "Bad Request",
+      content = @Content(schema = @Schema(implementation = HttpErrorResponseDTO.class)))
+  public BaseResponseDTO hello() {
+    BaseResponseDTO response = new BaseResponseDTO();
+    response.setVersion(version);
+    response.setDate(System.currentTimeMillis() / 1000);
+    response.setKubernetes(environmentService.isRunningInKubernetes());
+    return response;
+  }
 
-    @GET
-    @Path("/hi")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getText() {
-        String message = "Hello, World!";
-        return Response.ok(message).build();
-    }
-
+  @GET
+  @Path("/hi")
+  @Produces(MediaType.TEXT_PLAIN)
+  public Response getText() {
+    String message = "Hello, World!";
+    return Response.ok(message).build();
+  }
 }

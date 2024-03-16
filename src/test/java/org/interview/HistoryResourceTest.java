@@ -21,48 +21,40 @@ import org.junit.jupiter.api.Test;
 @QuarkusTest
 public class HistoryResourceTest {
 
-    private HistoryResource historyResource;
-    private DomainLookupService domainLookupService;
+  private HistoryResource historyResource;
+  private DomainLookupService domainLookupService;
 
-    @BeforeEach
-    public void setUp() {
-        domainLookupService = mock(DomainLookupService.class);
-        historyResource = new HistoryResource();
-        historyResource.domainLookupService = domainLookupService;
-    }
+  @BeforeEach
+  public void setUp() {
+    domainLookupService = mock(DomainLookupService.class);
+    historyResource = new HistoryResource();
+    historyResource.domainLookupService = domainLookupService;
+  }
 
+  @Test
+  void testGetHistoryEndpoint() {
+    given().when().get("/v1/history").then().statusCode(200).body(is(not(empty())));
+  }
 
-    @Test
-    void testGetHistoryEndpoint() {
-        given()
-            .when().get("/v1/history")
-            .then()
-            .statusCode(200) // 检查状态码是否为 200
-            .body(is(not(empty()))); // 检查返回的列表是否不为空
-    }
+  @Test
+  public void testGetHistory_Success() {
+    List<DomainHistoryDTO> historyList = new ArrayList<>();
+    DomainHistoryDTO history1 = new DomainHistoryDTO();
+    history1.setDomain("example.com");
+    history1.setClient_ip("192.168.1.1");
 
-    @Test
-    public void testGetHistory_Success() {
-        List<DomainHistoryDTO> historyList = new ArrayList<>();
-        // 添加一些测试数据到historyList
-        DomainHistoryDTO history1 = new DomainHistoryDTO();
-        history1.setDomain("example.com");
-        history1.setClient_ip("192.168.1.1");
+    DomainHistoryDTO history2 = new DomainHistoryDTO();
+    history2.setDomain("test.com");
+    history2.setClient_ip("192.168.1.2");
 
-        DomainHistoryDTO history2 = new DomainHistoryDTO();
-        history2.setDomain("test.com");
-        history2.setClient_ip("192.168.1.2");
+    historyList.add(history1);
+    historyList.add(history2);
 
-        historyList.add(history1);
-        historyList.add(history2);
+    when(domainLookupService.getDomainHistory()).thenReturn(historyList);
 
-        when(domainLookupService.getDomainHistory()).thenReturn(historyList);
+    Response response = historyResource.getHistory();
 
-        Response response = historyResource.getHistory();
-
-        assertEquals(200, response.getStatus(), "Response status should be 200 OK");
-        assertEquals(historyList, response.getEntity(), "Response entity should match historyList");
-    }
-
-
+    assertEquals(200, response.getStatus(), "Response status should be 200 OK");
+    assertEquals(historyList, response.getEntity(), "Response entity should match historyList");
+  }
 }

@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class HttpErrorResponseDTO {
 
-    String message;
+  String message;
 }
