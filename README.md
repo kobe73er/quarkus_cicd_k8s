@@ -61,6 +61,12 @@ docker-compose -f docker-compose-dev.yaml up
 - Visit services by using Azure LoadBalancer IP (4.147.249.188), for
   example : http://4.147.249.188/v1/history
 
+In case you want to deply it in K8s you can run below command:
+```yaml
+kubectl apply -f target/kubernetes/kubernetes.yml -n stakefish 
+```
+And also if you want to test my CI/CD implementation just make change and push to main branch and wait for pipeline finish to see the result
+
 
 ### Visit swagger UI
 
