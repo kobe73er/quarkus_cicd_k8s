@@ -3,7 +3,7 @@
 ## How it works ?
 
 - This project uses Quarkus, the Supersonic Subatomic Java Framework. If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-- Two docker images will be build : latest and github commit hash tag
+- Two docker images will be build : **latest** and **github commit hash tag**
 
 
 
@@ -21,7 +21,7 @@ So you need to do is submit your code and merge it to `main` branch , pipeline w
 ### Visit swagger UI
 http://localhost:3000/swagger-ui/
 
-## Commands ##
+## Note ##
 
 ### Start dev model with production configuration
 
@@ -34,4 +34,11 @@ http://localhost:3000/swagger-ui/
 ```
 ./mvnw package -Dquarkus.profile=prod
 ```
+### Database credential stored in K8s 
+```yaml
+kubectl create secret generic stakefish-db-credentials \
+  --from-literal=username='stakefishadmin' \
+  --from-literal=password='Deng_pf1234' \
+  -n stakefish
 
+```
